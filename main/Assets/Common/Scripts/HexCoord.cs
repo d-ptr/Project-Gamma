@@ -6,7 +6,6 @@ using UnityEngine;
 using System.Collections;
 
 
-
 // --------------------------------------------------------------------
 // Introduction
 // This is a class to control hex coordinate system.
@@ -128,7 +127,7 @@ public class HexCoord
         get { return new Vector2(Xc, Yc); }
     }
 
-    // ==> Private Member
+    // -------------------------------- Internal Member -------------------------------- //
     private int _mX;
     private int _mY;
 
@@ -167,6 +166,10 @@ public class HexCoord
         return ((_mX + _mY) % 2 == 0);
     }
 
-	
+    // -------------------------------- Overloading  -------------------------------- //
+    public static HexCoord operator *(HexCoord coord, int n)
+    {
+        return new HexCoord(coord._mX * n, coord._mY * n);
+    }
 
 }

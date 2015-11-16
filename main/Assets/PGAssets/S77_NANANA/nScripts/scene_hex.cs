@@ -5,26 +5,32 @@ public class scene_hex : MonoBehaviour
 {
     
     public GameObject groundParent;
-    public GameObject ground;
+    public HexBase hexBase;
 
 
 	void Start () 
     {
-        _createGround(HexCoord.ORIGINAL.CartesianCoord * 0.38f);
-        _createGround(HexCoord.TOP_LEFT.CartesianCoord * 0.38f);
-        _createGround(HexCoord.TOP_MIDDLE.CartesianCoord * 0.38f);
-        _createGround(HexCoord.TOP_RIGHT.CartesianCoord * 0.38f);
-        _createGround(HexCoord.BOTTOM_LEFT.CartesianCoord * 0.38f);
-        _createGround(HexCoord.BOTTOM_MIDDLE.CartesianCoord * 0.38f);
-        _createGround(HexCoord.BOTTOM_RIGHT.CartesianCoord * 0.38f);
+        for (int i = 0; i < 4; ++i )
+        {
+            _createGround(HexCoord.ORIGINAL * i, 0.38f);
+            _createGround(HexCoord.TOP_LEFT * i, 0.38f);
+            _createGround(HexCoord.TOP_MIDDLE * i, 0.38f);
+            _createGround(HexCoord.TOP_RIGHT * i, 0.38f);
+            _createGround(HexCoord.BOTTOM_LEFT * i, 0.38f);
+            _createGround(HexCoord.BOTTOM_MIDDLE * i, 0.38f);
+            _createGround(HexCoord.BOTTOM_RIGHT * i, 0.38f);
+        }
+
+            
 	}
     
-    private void _createGround(Vector2 pos)
+    private void _createGround(HexCoord coord, float radius)
     {
-        GameObject _ground = Instantiate(ground);
+        HexBase _base = Instantiate(hexBase).GetComponent<HexBase>();
 
-        _ground.transform.parent = groundParent.transform;
-        _ground.transform.localPosition = new Vector3(pos.x, 0, pos.y);
+        _base.create(coord, radius);
+        _base.transform.parent = groundParent.transform;
+        _base.transform.localPosition = _base.getTranslation();
     }
 	
 
