@@ -11,6 +11,7 @@ public class SceneBuilder : EditorWindow
         _builder.Show();
     }
 
+    /*
     void OnGUI()
     {
         if (GUILayout.Button("abc"))
@@ -45,4 +46,5 @@ public class SceneBuilder : EditorWindow
         AssetDatabase.CreateAsset(_mesh, "Assets/mesh.asset");
         AssetDatabase.SaveAssets();
     }
+    */
 }
